@@ -1,0 +1,23 @@
+:root {
+  color-scheme: dark;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+}
+body { margin: 0; }
+main { max-width: 960px; margin: 0 auto; padding: 24px; }
+a { color: #58a6ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { background: #161b22; padding: 2px 6px; border-radius: 4px; }
+.muted { color: #8b949e; }
+.card { background: #161b22; border-radius: 8px; padding: 16px; margin-top: 16px; }
+header { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+header h1 { margin-right: auto; }
+.user { display: flex; align-items: center; gap: 8px; }
+.user img { border-radius: 50%; }
+.login-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #238636; color: #fff; font-weight: 600;
+  padding: 8px 16px; border-radius: 8px;
+}
+.login-btn:hover { background: #2ea043; text-decoration: none; }

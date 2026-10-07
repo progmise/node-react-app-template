@@ -12,7 +12,7 @@ pipelines.
 | React 19 + Vite | SPA in `src/` → `dist/` (base `/`) |
 | Express 5 backend | `server/index.js` — serves `dist/` + `/api/*`; example `/api/ping` + `/api/health` |
 | GitHub OAuth | `/api/auth/login` → callback → HttpOnly cookie `gh_token` → `/api/me`. Optional infra: needs `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET`; the app runs without them (sign-in just won't complete) |
-| Docker | Self-contained `Dockerfile` (npm build → node runtime, npm stripped from the final image); `Dockerfile.vercel` kept in sync for Vercel container deploys — **bump both together** |
+| Docker | Self-contained `Dockerfile` (npm build → node runtime, npm stripped from the final image) — the same file is built by CSA, compose, and Vercel |
 | CI/CD | Thin callers in `.github/workflows` → `reusable-workflows` `app-*` `@v1` |
 
 ## Use this template
@@ -41,8 +41,8 @@ Everything is **optional** — CI stays green with zero credentials:
   `docker.io/<DOCKER_USERNAME>/<repo>` — skipped when unset
 - **Deploy** (`VERCEL_TOKEN` secret + `VERCEL_ORG_ID`/`VERCEL_PROJECT_ID`
   vars): Vercel — skipped when unset. The project's **Framework Preset must
-  be `Container`** so `Dockerfile.vercel` is detected and all traffic routes
-  to the built image
+  be `Container`** (Settings → Build & Development Settings) so the root
+  `Dockerfile` is built and all traffic routes to the container
 - **`DEPLOY_ENVIRONMENTS`** (var, JSON list, default `["pro"]`)
 - **Tracing** (`GRAFANA_OTLP_ENDPOINT` var + `GRAFANA_OTLP_AUTH` secret)
 - **OAuth** (Vercel project env vars, Production): `GITHUB_CLIENT_ID`,

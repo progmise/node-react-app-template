@@ -27,9 +27,9 @@ Rules:
 - ESM everywhere (`"type": "module"`); Express 5 (wildcards use named
   splats — `/api/gh/{*splat}`, not `/api/gh/*`).
 - `oxlint` for lint (`npm run lint`); build is `npm run build` (vite → dist).
-- `Dockerfile` and `Dockerfile.vercel` must stay identical — CSA scans
-  `Dockerfile`; Vercel builds `Dockerfile.vercel`. Runtime strips npm
-  (its bundled deps carry known CVEs).
+- Single root `Dockerfile` — CSA scans it and Vercel builds it too
+  (project preset `Container`); runtime strips npm (its bundled deps
+  carry known CVEs).
 
 ## CI/CD
 

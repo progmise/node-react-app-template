@@ -11,7 +11,7 @@ pipelines.
 |---|---|
 | React 19 + Vite | SPA in `src/` → `dist/` (base `/`) |
 | Express 5 backend | `server/index.js` — serves `dist/` + `/api/*`; example `/api/ping` + `/api/health` |
-| GitHub OAuth | `/api/auth/login` → callback → HttpOnly cookie `gh_token` → `/api/me`. Optional infra: needs `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET`; the app runs without them (sign-in just won't complete) |
+| GitHub OAuth | `/api/auth/login` → callback → HttpOnly cookie `gh_token` → `/api/me`. Optional infra: needs `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET`; the app runs without them (sign-in just won't complete). `ALLOWED_USERS` (comma-separated logins) restricts who can sign in — empty allows anyone |
 | Docker | Self-contained `Dockerfile` (npm build → node runtime, npm stripped from the final image) — the same file is built by CSA, compose, and Vercel |
 | CI/CD | Thin callers in `.github/workflows` → `reusable-workflows` `app-*` `@v1` |
 

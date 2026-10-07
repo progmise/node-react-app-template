@@ -5,11 +5,26 @@ progmise React + Vite + Express deployable services.
 
 ## Architecture
 
+Two halves — a React SPA and an Express server that serves it:
+
 ```
-src/               React SPA (Vite → dist/)
-server/index.js    Express — serves dist/ + /api/*, OAuth, /api/health
-public/            static assets copied to dist/
+src/                        SPA (Vite → dist/) — feature-sliced layers:
+  main.jsx                  entry, renders app/App
+  app/App.jsx               shell — layout + composition
+  domain/                   pure rules, no react/fetch imports
+  application/              use cases as hooks (useSession, usePing…)
+  infrastructure/api/       fetch wrapper + one module per API resource —
+                            the ONLY place that knows endpoint URLs
+  ui/
+    components/             shared presentational components
+    features/<name>/        feature screens/widgets (session/, …)
+server/index.js             Express — serves dist/ + /api/*, OAuth, /api/health
+public/                     static assets copied to dist/
 ```
+
+Dependency rule (same idea as the APIs' hexagonal): `ui/` talks to
+`application/` only; `application/` talks to `infrastructure/`; `domain/`
+imports nothing. Components never call `fetch` directly.
 
 Rules:
 - The backend serves the built SPA — frontend fetches go to `/api/*`

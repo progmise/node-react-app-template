@@ -56,7 +56,7 @@ Everything is **optional** — CI stays green with zero credentials:
   creates the GitHub Release/tag. **Never deploys.**
 - **Deploy** (manual): deploy any released `version` to one env
   (`pro`/`cert`/`pre`, must be in `DEPLOY_ENVIRONMENTS`) — or via the
-  `deploy-manifest` orchestrator.
+  app-model orchestrator.
 - **Integration** (on merge): CI + publishes `:<sha>` + `:edge`/`:latest`,
   deploys to non-pro envs.
 - **CI Checks** (on PR): build, lint via `npm test --if-present`, SAST, SCA,
